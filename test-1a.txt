@@ -1,0 +1,6 @@
+Blue Party/A:10000
+Red Party/B:10000
+Yellow Party/C:6000
+Green Party/D:5000
+Purple Party/E:12
+Orange Party/F:1
