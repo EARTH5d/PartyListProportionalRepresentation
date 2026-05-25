@@ -3,7 +3,7 @@
  * Abstract class Method - An abstract class for the varius methods used to allocated seats.
  *
  * @author Casey Alton Marshall
- * @version 10/5/2025
+ * @version 5/25/2026
  */
 
 import java.util.*;
@@ -14,6 +14,8 @@ public abstract class Method {
 
 	protected int total; // Total number of parties that competed in this election.
 	protected int seats; // Number of seats up for election.
+	protected int totalVotes; // The total number of votes.
+	protected double threshold; // A percentage of votes a party must pass in order to be able to receive seats.
 	protected List<Party> parties; // The arrayList which instances of the class Party are stored.
 	protected String file; // The name of the text file which contains the tally of votes.
 
@@ -24,9 +26,11 @@ public abstract class Method {
 		// initialise instance variables
 		total = 0;
 		Random rand = new Random();
-		seats = rand.nextInt(2995) + 5;
+		seats = rand.nextInt(2996) + 5;
+		threshold = 0.0;
 		file = "Fictional-1.txt";
 		parties = new ArrayList<Party>();
+		totalVotes = 0;
 
 	}
 
@@ -40,8 +44,10 @@ public abstract class Method {
 		// initialise instance variables
 		total = 0;
 		seats = openSeats;
+		threshold = 0.0;
 		file = "Fictional-1.txt";
 		parties = new ArrayList<Party>();
+		totalVotes = 0;
 
 	}
 
@@ -55,9 +61,11 @@ public abstract class Method {
 		// initialise instance variables
 		total = 0;
 		Random rand = new Random();
-		seats = rand.nextInt(2995) + 5;
+		seats = rand.nextInt(2996) + 5;
+		threshold = 0.0;
 		file = fileName;
 		parties = new ArrayList<Party>();
+		totalVotes = 0;
 
 	}
 
@@ -69,11 +77,13 @@ public abstract class Method {
 	 */
 	public Method(ArrayList<Party> parties) {
 		// initialise instance variables
-		total = 0;
+		total = parties.size();
 		Random rand = new Random();
-		seats = rand.nextInt(2995) + 5;
+		seats = rand.nextInt(2996) + 5;
+		threshold = 0.0;
 		file = "N/A";
 		this.parties = parties;
+		findTotalTally();
 
 	}
 
@@ -87,6 +97,24 @@ public abstract class Method {
 		// initialise instance variables
 		total = 0;
 		seats = openSeats;
+		threshold = 0.0;
+		file = fileName;
+		parties = new ArrayList<Party>();
+		totalVotes = 0;
+
+	}
+
+	/**
+	 * Alternate Constructor for objects of class Method with parameters to pass in
+	 * the number of seats, a threshold and a pre-created list of parties.
+	 * 
+	 * @param int openSeats, double threshold, String fileName
+	 */
+	public Method(int openSeats, double threshold, String fileName) {
+		// initialise instance variables
+		total = 0;
+		seats = openSeats;
+		this.threshold = threshold;
 		file = fileName;
 		parties = new ArrayList<Party>();
 
@@ -94,16 +122,34 @@ public abstract class Method {
 
 	/**
 	 * Alternate Constructor for objects of class Method with parameters to pass in
-	 * the number of seats and the text file name.
+	 * the number of seats and an ArrayList of parties.
 	 * 
 	 * @param int openSeats, ArrayList<Party> parties
 	 */
 	public Method(int openSeats, ArrayList<Party> parties) {
 		// initialise instance variables
-		total = 0;
+		total = parties.size();
 		seats = openSeats;
+		threshold = 0.0;
 		file = "N/A";
 		this.parties = parties;
+		findTotalTally();
+	}
+
+	/**
+	 * Alternate Constructor for objects of class Method with parameters to pass in
+	 * the number of seats, a threshold and an ArrayList of parties.
+	 * 
+	 * @param int openSeats, double threshold, ArrayList<Party> parties
+	 */
+	public Method(int openSeats, double threshold, ArrayList<Party> parties) {
+		// initialise instance variables
+		total = parties.size();
+		seats = openSeats;
+		this.threshold = threshold;
+		file = "N/A";
+		this.parties = parties;
+		findTotalTally();
 
 	}
 
@@ -117,6 +163,82 @@ public abstract class Method {
 		Party newParty = new Party(name, currVotes);
 		parties.add(total, newParty);
 		total++;
+		totalVotes += newParty.getVotes();
+	}
+
+	/**
+	 * A private function that find the total number of votes.
+	 * 
+	 * @param None
+	 * @return None(void)
+	 */
+	private void findTotalTally() {
+		for (Party curr : this.parties) {
+			totalVotes += curr.getVotes();
+		}
+	}
+
+	/**
+	 * A Protectedfunction that find the total number of votes.
+	 * 
+	 * @param ArrayList<Party> parties a list of parties.
+	 * @return None(void)
+	 */
+	protected int findTotalTally(List<Party> parties) {
+		int totalVotes = 0;
+		for (Party curr : parties) {
+			totalVotes += curr.getVotes();
+		}
+		return totalVotes;
+	}
+
+	/**
+	 * A protected function to find the percatage of the total votes a party.
+	 * received.
+	 * 
+	 * @param int partyIndex.
+	 * @return double representing a the party's percentage of the total amount of
+	 *         votes.
+	 */
+	protected double findPercentage(int partyIndex) {
+		return (parties.get(partyIndex).getVotes() / (double) totalVotes);
+	}
+
+	/**
+	 * A protected function to create a array list of that contains all parties that
+	 * meeted the threshold.
+	 * 
+	 * @param none
+	 * @return A array list of parties that meant the threshold.
+	 */
+	protected List<Party> filterList() {
+		Party curr = null;
+		List<Party> filteredList = new ArrayList<Party>();
+		for (int i = 0; i < total; i++) {
+			curr = this.parties.get(i);
+			if (findPercentage(i) >= threshold) {
+				filteredList.add(curr);
+			}
+
+		}
+		return filteredList;
+
+	}
+
+	/*
+	 * A protected function to create a array list of that contains all parties that
+	 * meeted the threshold.
+	 */
+	// protected abstract List<Party> filterList();
+
+	/**
+	 * A Public function to set/change the threshold.
+	 * 
+	 * @param double threshold.
+	 * @return None.
+	 */
+	public void setThreshold(double threshold) {
+		this.threshold = threshold;
 	}
 
 	/**

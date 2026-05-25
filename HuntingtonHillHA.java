@@ -23,8 +23,7 @@ public class HuntingtonHillHA extends HighAverage {
 	 */
 	public HuntingtonHillHA(int openSeats) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
+		super(openSeats);
 	}
 
 	/**
@@ -34,8 +33,7 @@ public class HuntingtonHillHA extends HighAverage {
 	 */
 	public HuntingtonHillHA(String fileName) {
 		// initialise instance variables
-		super();
-		file = fileName;
+		super(fileName);
 	}
 
 	/**
@@ -45,17 +43,29 @@ public class HuntingtonHillHA extends HighAverage {
 	 */
 	public HuntingtonHillHA(int openSeats, String fileName) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = fileName;
+		super(openSeats, fileName);
+	}
+
+	/**
+	 * Alternate Constructor for objects of class HuntingtonHillHA with parameters
+	 * to pass
+	 * in the number of seats, a threshold and a pre-created list of parties.
+	 * 
+	 * @param int openSeats, double threshold, String fileName
+	 */
+	public HuntingtonHillHA(int openSeats, double threshold, String fileName) {
+		super(openSeats, threshold, fileName);
 	}
 
 	public HuntingtonHillHA(int openSeats, ArrayList<Party> parties) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = "N/A";
-		this.parties = parties;
+		super(openSeats, parties);
+	}
+
+	public HuntingtonHillHA(int openSeats, double threshold, ArrayList<Party> parties) {
+		// initialise instance variables
+		super(openSeats, threshold, parties);
+
 	}
 
 	public void allocateSeats() {
@@ -72,6 +82,6 @@ public class HuntingtonHillHA extends HighAverage {
 	 * @return the Parties current quotient.
 	 */
 	protected double quotient(int votes, int currSeats) {
-		return (currSeats > 0) ? votes / Math.sqrt((double) currSeats * (currSeats + 1)) : Double.POSITIVE_INFINITY;
+		return (currSeats > 0) ? (votes / Math.sqrt((double) currSeats * (currSeats + 1))) : Double.POSITIVE_INFINITY;
 	}
 }

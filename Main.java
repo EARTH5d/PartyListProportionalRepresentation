@@ -13,9 +13,10 @@ public class Main {
 	// instance variables - replace the example below with your own
 
 	public static void main(String[] args) throws IOException {
-		String filename = "test-1a.txt";
+		String filename = "fictional-1.txt";
 
 		int seats = 0;
+		double threshold = 0.04;
 		boolean isEntered = false;
 		Scanner input = new Scanner(System.in);
 
@@ -35,15 +36,15 @@ public class Main {
 
 		// Parties = enterResults();
 
-		DroopHA election1 = new DroopHA(seats, filename);
-		DHondtHA election2 = new DHondtHA(seats, filename);
-		WebsterHA election3 = new WebsterHA(seats, filename);
-		AdamHA election4 = new AdamHA(seats, filename);
-		HuntingtonHillHA election5 = new HuntingtonHillHA(seats, filename);
-		DroopLR election6 = new DroopLR(seats, filename);
-		HareLR election7 = new HareLR(seats, filename);
-		ImperialiLR imperialiLR = new ImperialiLR(seats, filename);
-		DroopLR_Sq election8 = new DroopLR_Sq(seats, filename);
+		DroopHA election1 = new DroopHA(seats, threshold, filename);
+		DHondtHA election2 = new DHondtHA(seats, threshold, filename);
+		WebsterHA election3 = new WebsterHA(seats, threshold, filename);
+		AdamHA election4 = new AdamHA(seats, threshold, filename);
+		HuntingtonHillHA election5 = new HuntingtonHillHA(seats, threshold, filename);
+		DroopLR election6 = new DroopLR(seats, threshold, filename);
+		HareLR election7 = new HareLR(seats, threshold, filename);
+		ImperialiLR imperialiLR = new ImperialiLR(seats, threshold, filename);
+		DroopLR_Sq election8 = new DroopLR_Sq(seats, threshold, filename);
 
 		System.out.println("Highest Average Methods");
 		System.out.println("Droop:");

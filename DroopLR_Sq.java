@@ -21,8 +21,7 @@ public class DroopLR_Sq extends Method {
 	 */
 	public DroopLR_Sq(int openSeats) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
+		super(openSeats);
 	}
 
 	/**
@@ -32,8 +31,7 @@ public class DroopLR_Sq extends Method {
 	 */
 	public DroopLR_Sq(String fileName) {
 		// initialise instance variables
-		super();
-		file = fileName;
+		super(fileName);
 	}
 
 	/**
@@ -43,18 +41,33 @@ public class DroopLR_Sq extends Method {
 	 */
 	public DroopLR_Sq(int openSeats, String fileName) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = fileName;
+		super(openSeats, fileName);
+	}
+
+	/**
+	 * Alternate Constructor for objects of class Method with parameters to pass in
+	 * the number of seats, a threshold and a pre-created list of parties.
+	 * 
+	 * @param int openSeats, double threshold, String fileName
+	 */
+	public DroopLR_Sq(int openSeats, double threshold, String fileName) {
+		super(openSeats, threshold, fileName);
 	}
 
 	public DroopLR_Sq(int openSeats, ArrayList<Party> parties) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = "N/A";
-		this.parties = parties;
+		super(openSeats, parties);
 	}
+
+	public DroopLR_Sq(int openSeats, double threshold, ArrayList<Party> parties) {
+		// initialise instance variables
+		super(openSeats, threshold, parties);
+
+	}
+
+	// protected List<Party> filterList() {
+	// return parties;
+	// }
 
 	public void allocateSeats() {
 		int totalSeatsAllocated = 0;
@@ -76,7 +89,7 @@ public class DroopLR_Sq extends Method {
 			for (Party currParty : partiesTemp) {
 				currParty.setSeats(0);
 			}
-			recursitiveAllocation = new DroopLR(emptySeats, partiesTemp);
+			recursitiveAllocation = new DroopLR(emptySeats, this.threshold, partiesTemp);
 			recursitiveAllocation.allocateSeats();
 			for (int i = 0; i < parties.size(); i++) {
 				curr = parties.get(i);
@@ -92,4 +105,5 @@ public class DroopLR_Sq extends Method {
 			seatsAllocatedThisRound = 0;
 		} while (totalSeatsAllocated < this.seats);
 	}
+
 }

@@ -21,8 +21,7 @@ public abstract class LargestRemainder extends Method {
 	 */
 	public LargestRemainder(int openSeats) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
+		super(openSeats);
 
 	}
 
@@ -32,8 +31,7 @@ public abstract class LargestRemainder extends Method {
 	 */
 	public LargestRemainder(String fileName) {
 		// initialise instance variables
-		super();
-		file = fileName;
+		super(fileName);
 
 	}
 
@@ -43,18 +41,29 @@ public abstract class LargestRemainder extends Method {
 	 */
 	public LargestRemainder(int openSeats, String fileName) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = fileName;
+		super(openSeats, fileName);
 
+	}
+
+	/**
+	 * Alternate Constructor for objects of class Method with parameters to pass in
+	 * the number of seats, a threshold and a pre-created list of parties.
+	 * 
+	 * @param int openSeats, double threshold, String fileName
+	 */
+	public LargestRemainder(int openSeats, double threshold, String fileName) {
+		super(openSeats, threshold, fileName);
 	}
 
 	public LargestRemainder(int openSeats, ArrayList<Party> parties) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		this.parties = parties;
-		file = "N/A";
+		super(openSeats, parties);
+	}
+
+	public LargestRemainder(int openSeats, double threshold, ArrayList<Party> parties) {
+		// initialise instance variables
+		super(openSeats, threshold, parties);
+
 	}
 
 	/**
@@ -63,7 +72,6 @@ public abstract class LargestRemainder extends Method {
 	public void allocateSeats() {
 		int index = 0;
 		int assignedSeats = 0;
-		int totalVotes = 0;
 		// int currVotes = 0;
 		int currSeats = 0;
 		int winner = -1;
@@ -73,17 +81,15 @@ public abstract class LargestRemainder extends Method {
 		double currRemainder = 0;
 		double LargestRemainder = 0;
 
-		Party curr = new Party();
+		Party curr = null;
 
 		List<Double> remainders = new ArrayList<Double>();
 		List<Integer> tiedWinners = new ArrayList<Integer>();
+		List<Party> parties = (threshold <= 0.0) ? this.parties : filterList();
+		int totalVotes = findTotalTally(parties);
 
 		for (Party it : parties) {
 			it.setSeats(0);
-		}
-
-		for (ListIterator<Party> it = parties.listIterator(); it.hasNext();) {
-			totalVotes += it.next().getVotes();
 		}
 		Quote = quotient(totalVotes);
 
@@ -136,6 +142,10 @@ public abstract class LargestRemainder extends Method {
 			}
 		}
 	}
+
+	// protected List<Party> filterList() {
+	// return parties;
+	// }
 
 	/**
 	 * Caluated the quotient of a party.

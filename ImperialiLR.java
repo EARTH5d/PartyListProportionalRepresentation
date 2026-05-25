@@ -4,7 +4,7 @@ import java.util.*;
  * Write a description of class ImperialiLR here.
  *
  * @author Casey Alton Marshall
- * @version 5/24/2026
+ * @version 5/25/2026
  */
 public class ImperialiLR extends LargestRemainder {
 	/**
@@ -21,8 +21,7 @@ public class ImperialiLR extends LargestRemainder {
 	 */
 	public ImperialiLR(int openSeats) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
+		super(openSeats);
 	}
 
 	/**
@@ -32,8 +31,7 @@ public class ImperialiLR extends LargestRemainder {
 	 */
 	public ImperialiLR(String fileName) {
 		// initialise instance variables
-		super();
-		file = fileName;
+		super(fileName);
 	}
 
 	/**
@@ -43,17 +41,28 @@ public class ImperialiLR extends LargestRemainder {
 	 */
 	public ImperialiLR(int openSeats, String fileName) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = fileName;
+		super(openSeats, fileName);
+	}
+
+	/**
+	 * Alternate Constructor for objects of class ImperialiLR with parameters to
+	 * pass in the number of seats, a threshold and a pre-created list of parties.
+	 * 
+	 * @param int openSeats, double threshold, String fileName
+	 */
+	public ImperialiLR(int openSeats, double threshold, String fileName) {
+		super(openSeats, threshold, fileName);
 	}
 
 	public ImperialiLR(int openSeats, ArrayList<Party> parties) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = "N/A";
-		this.parties = parties;
+		super(openSeats, parties);
+	}
+
+	public ImperialiLR(int openSeats, double threshold, ArrayList<Party> parties) {
+		// initialise instance variables
+		super(openSeats, threshold, parties);
+
 	}
 
 	/**

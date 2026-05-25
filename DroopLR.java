@@ -20,8 +20,7 @@ public class DroopLR extends LargestRemainder {
 	 */
 	public DroopLR(int openSeats) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
+		super(openSeats);
 	}
 
 	/**
@@ -30,8 +29,7 @@ public class DroopLR extends LargestRemainder {
 	 */
 	public DroopLR(String fileName) {
 		// initialise instance variables
-		super();
-		file = fileName;
+		super(fileName);
 	}
 
 	/**
@@ -40,17 +38,28 @@ public class DroopLR extends LargestRemainder {
 	 */
 	public DroopLR(int openSeats, String fileName) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = fileName;
+		super(openSeats, fileName);
+	}
+
+	/**
+	 * Alternate Constructor for objects of class Method with parameters to pass in
+	 * the number of seats, a threshold and a pre-created list of parties.
+	 * 
+	 * @param int openSeats, double threshold, String fileName
+	 */
+	public DroopLR(int openSeats, double threshold, String fileName) {
+		super(openSeats, threshold, fileName);
 	}
 
 	public DroopLR(int openSeats, ArrayList<Party> parties) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = "N/A";
-		this.parties = parties;
+		super(openSeats, parties);
+	}
+
+	public DroopLR(int openSeats, double threshold, ArrayList<Party> parties) {
+		// initialise instance variables
+		super(openSeats, threshold, parties);
+
 	}
 
 	/**

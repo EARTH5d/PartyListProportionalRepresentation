@@ -21,8 +21,7 @@ public class DroopHA extends HighAverage {
 	 */
 	public DroopHA(int openSeats) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
+		super(openSeats);
 	}
 
 	/**
@@ -31,8 +30,7 @@ public class DroopHA extends HighAverage {
 	 */
 	public DroopHA(String fileName) {
 		// initialise instance variables
-		super();
-		file = fileName;
+		super(fileName);
 	}
 
 	/**
@@ -41,17 +39,28 @@ public class DroopHA extends HighAverage {
 	 */
 	public DroopHA(int openSeats, String fileName) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = fileName;
+		super(openSeats, fileName);
+	}
+
+	/**
+	 * Alternate Constructor for objects of class Method with parameters to pass in
+	 * the number of seats, a threshold and a pre-created list of parties.
+	 * 
+	 * @param int openSeats, double threshold, String fileName
+	 */
+	public DroopHA(int openSeats, double threshold, String fileName) {
+		super(openSeats, threshold, fileName);
 	}
 
 	public DroopHA(int openSeats, ArrayList<Party> parties) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = "N/A";
-		this.parties = parties;
+		super(openSeats, parties);
+	}
+
+	public DroopHA(int openSeats, double threshold, ArrayList<Party> parties) {
+		// initialise instance variables
+		super(openSeats, threshold, parties);
+
 	}
 
 	public void allocateSeats() {

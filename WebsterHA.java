@@ -4,7 +4,7 @@ import java.util.*;
  * Write a description of class WebsterHA here.
  *
  * @author Casey Alotn Marshall
- * @version 10/5/2025
+ * @version 5/25/2026
  */
 public class WebsterHA extends HighAverage {
 	// instance variables - replace the example below with your own
@@ -23,8 +23,7 @@ public class WebsterHA extends HighAverage {
 	 */
 	public WebsterHA(int openSeats) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
+		super(openSeats);
 	}
 
 	/**
@@ -33,8 +32,7 @@ public class WebsterHA extends HighAverage {
 	 */
 	public WebsterHA(String fileName) {
 		// initialise instance variables
-		super();
-		file = fileName;
+		super(fileName);
 	}
 
 	/**
@@ -43,17 +41,28 @@ public class WebsterHA extends HighAverage {
 	 */
 	public WebsterHA(int openSeats, String fileName) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = fileName;
+		super(openSeats, fileName);
+	}
+
+	/**
+	 * Alternate Constructor for objects of class WebsterHA with parameters to pass
+	 * in the number of seats, a threshold and a pre-created list of parties.
+	 * 
+	 * @param int openSeats, double threshold, String fileName
+	 */
+	public WebsterHA(int openSeats, double threshold, String fileName) {
+		super(openSeats, threshold, fileName);
 	}
 
 	public WebsterHA(int openSeats, ArrayList<Party> parties) {
 		// initialise instance variables
-		super();
-		seats = openSeats;
-		file = "N/A";
-		this.parties = parties;
+		super(openSeats, parties);
+	}
+
+	public WebsterHA(int openSeats, double threshold, ArrayList<Party> parties) {
+		// initialise instance variables
+		super(openSeats, threshold, parties);
+
 	}
 
 	public void allocateSeats() {
