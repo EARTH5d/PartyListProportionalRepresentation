@@ -136,6 +136,16 @@ public abstract class Method {
 		findTotalTally();
 	}
 
+	public Method(int openSeats, List<Party> parties) {
+		// initialise instance variables
+		total = parties.size();
+		seats = openSeats;
+		threshold = 0.0;
+		file = "N/A";
+		this.parties = parties;
+		findTotalTally();
+	}
+
 	/**
 	 * Alternate Constructor for objects of class Method with parameters to pass in
 	 * the number of seats, a threshold and an ArrayList of parties.

@@ -1,0 +1,9 @@
+Liberal:5556629
+Conservative: 5747410
+Bloc Québécois: 1,301,615
+New Democratic: 3,036,348
+Green: 396,988
+People's: 840,993
+Free : 47,252
+Maverick: 35,178
+Independent and No Affiliation:32,481

@@ -4,7 +4,7 @@ import java.util.*;
  * Write a description of class HareLR here.
  *
  * @author Casey Alton Marshall
- * @version 6/20/2025
+ * @version 5/25/2026
  */
 public class HareLR extends LargestRemainder {
 	/**

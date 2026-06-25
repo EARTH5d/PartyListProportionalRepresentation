@@ -1,0 +1,18 @@
+Conservative:12710845
+Labour:91520345
+Liberal Democratic:3340835
+Green:819751
+Brexit Party:545172
+Yorkshire:29201
+UK Independence Party:18891
+Liberal:10876
+Change UK:10006
+Monster Raving Loony:9394
+Christian People Alliance:6246
+Animal Welfare:3086
+Social Democratic:3000
+English Democratic:1987
+Libertarian:1375
+Worker Revolutionary:524
+Advance:351
+Other:246094

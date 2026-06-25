@@ -1,0 +1,8 @@
+Democratic:10261984
+Republican:5249974
+Unaffiliated:4983013
+American Indepent:749556
+Libertarian:224931
+Peace and Freedom:117314
+Green:92570
+Other:148686

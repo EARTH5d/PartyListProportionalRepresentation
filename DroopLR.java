@@ -1,10 +1,10 @@
 import java.util.*;
 
 /**
- * Write a description of class DroopLR here.
+ * Description:
  *
  * @author Casey Alton Marshall
- * @version 5/24/2026
+ * @version 5/25/2026
  */
 public class DroopLR extends LargestRemainder {
 	/**

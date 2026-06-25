@@ -1,8 +1,7 @@
 import java.util.*;
 
 /**
- * Write a description of class Droop here.
- *
+ * 
  * @author Casey Marshall
  * @version 5/23/2026
  */
@@ -78,7 +77,6 @@ public class AdamHA extends HighAverage {
      * @return the Parties current quotient (quot).
      */
     protected double quotient(int votes, int currSeats) {
-        return (currSeats > 0) ? votes / (double) currSeats
-                : ((currSeats == 0) ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY);
+        return (currSeats > 0) ? votes / (double) currSeats : Double.POSITIVE_INFINITY;
     }
 }

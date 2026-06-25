@@ -3,7 +3,7 @@
  * Write a description of class Method here.
  *
  * @author Casey Alton Marshall
- * @version 5/24/2026
+ * @version 5/25/2026
  */
 
 import java.util.*;
@@ -61,6 +61,11 @@ public abstract class HighAverage extends Method {
 	}
 
 	public HighAverage(int openSeats, ArrayList<Party> parties) {
+		// initialise instance variables
+		super(openSeats, parties);
+	}
+
+	public HighAverage(int openSeats, List<Party> parties) {
 		// initialise instance variables
 		super(openSeats, parties);
 	}

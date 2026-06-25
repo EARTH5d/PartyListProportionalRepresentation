@@ -57,6 +57,11 @@ public class DHondtHA extends HighAverage {
 		super(openSeats, parties);
 	}
 
+	public DHondtHA(int openSeats, List<Party> parties) {
+		// initialise instance variables
+		super(openSeats, parties);
+	}
+
 	public DHondtHA(int openSeats, double threshold, ArrayList<Party> parties) {
 		// initialise instance variables
 		super(openSeats, threshold, parties);
@@ -67,6 +72,10 @@ public class DHondtHA extends HighAverage {
 		for (Party p : parties) {
 			p.setSeats(0);
 		}
+		super.allocateSeats();
+	}
+
+	public void allocateSeats_Sq() {
 		super.allocateSeats();
 	}
 

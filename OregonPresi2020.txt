@@ -1,0 +1,6 @@
+Democratic   :1340383
+Republican   :958448
+Libertarian  :41582
+Pacific Green:11831
+Progressive  :4988
+Write-in     :17089

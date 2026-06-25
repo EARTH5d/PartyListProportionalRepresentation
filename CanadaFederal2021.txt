@@ -1,0 +1,23 @@
+Liberal:5556629
+Conservative:5747410
+Bloc Quebecois:1301615
+New Democratic:3036348
+Green:396988
+People's:840993
+Free:47252
+Maverick:35178
+Unaffiliated:32481
+Christian Heritage:8985
+Rhinoceros:6085
+Libertatian:4765
+Communist:4700
+Marxist-Leninist:4532
+Pour I'Independance du Quebec:2934
+Animal Protection:2546
+Marijuana:2031
+Veterans Coalition:1246
+Centrist:648
+National Citizens Alliance:476
+Patriote:244
+Canada's Fourth Front:105
+Canadian Nationlist:52

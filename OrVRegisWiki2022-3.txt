@@ -1,0 +1,10 @@
+Unaffiliated:1022556
+Democratic:1019668
+Republican:723728
+Inpendent:139674
+Libertarian:21569
+WorkingFamily:8716
+Pacific Green:8098
+Constitution:3942
+Progressive:3154
+Other:16525

@@ -4,7 +4,7 @@ import java.util.*;
  * Write a description of class Droop here.
  *
  * @author Casey Marshall
- * @version 5/24/2026
+ * @version 5/25/2026
  */
 public class DroopHA extends HighAverage {
 

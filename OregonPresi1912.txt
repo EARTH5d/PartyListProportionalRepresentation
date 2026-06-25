@@ -1,0 +1,5 @@
+Democratic:47064
+Progressive:37600
+Republican:34673
+Socialist:13343
+Prohibition:4360

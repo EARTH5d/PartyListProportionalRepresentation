@@ -1,10 +1,9 @@
 import java.util.*;
 
 /**
- * Write a description of class DroopLR here.
- *
+ * 
  * @author Casey Alton Marshall
- * @version 5/24/2026
+ * @version 5/25/2026
  */
 public class DroopLR_Sq extends Method {
 	/**
