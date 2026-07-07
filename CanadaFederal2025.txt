@@ -1,9 +1,16 @@
 Liberal:5556629
-Conservative: 5747410
-Bloc Québécois: 1,301,615
-New Democratic: 3,036,348
-Green: 396,988
-People's: 840,993
-Free : 47,252
-Maverick: 35,178
-Independent and No Affiliation:32,481
+Conservative:5747410
+Bloc Quebecois:1301615
+New Democratic:3036348
+Green:396988
+People's:840993
+Independent and No Affiliation:32481
+Christian Heritage:10065
+Rhinoceros:7063
+United:6061
+Libertarian5561
+Marxist-Leninist:4996
+Communist:4685
+Canadian Future:3123
+Animal Protection:1301
+Marijuana:133

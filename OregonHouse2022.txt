@@ -1,0 +1,6 @@
+Democratic:981568
+Republican:878962
+Libertarian:6085
+Constitution:1073
+Progressive:2837
+Write-in Candidates:5028

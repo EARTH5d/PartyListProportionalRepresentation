@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -6,7 +7,7 @@ import java.util.Scanner;
 /**
  *
  * @author Casey Alton Marshall
- * @version 6/22/2026
+ * @version 7/7/2026
  */
 public class Controller {
 	// instance variables - replace the example below with your own
@@ -37,8 +38,11 @@ public class Controller {
 		System.out.println(" 7.) HareLR ");
 		System.out.println(" 8.) ImperialiLR ");
 		System.out.println(
-				" 9.) DroopLR_Sq If all leftover seats have not been allocated to a Party, then conduct another round of allocation with the original votes apply to the remainding seats");
+				" 9.) DroopLR_Sq If any leftover seats have not been allocated to a Party, then conduct another round of allocation with the original votes apply to the remainding seats");
 		System.out.println(" 0.) SouthAfricanMethod ");
+		System.out.println(" r.) to enter new/different election results.");
+		System.out.println(" s.) to change the numbers of seats.");
+		System.out.println(" t.) to change the election threshold. ");
 		System.out.println(" q.) to exit ");
 
 	}
@@ -51,7 +55,7 @@ public class Controller {
 	private char getSelection() {
 		String in = input.nextLine();
 		if (in.length() > 1) {
-			return '日'; // Junk character, copied and pasted from a wikipedia artlice.
+			return ' '; // Junk character, space.
 		} else {
 			return in.charAt(0);
 		}
@@ -64,12 +68,10 @@ public class Controller {
 	 * @param int    seats
 	 * @param double threshold
 	 * @param String filename
+	 * 
+	 * @return boolean
 	 */
-	private void executeSelection(char selection, int seats, double threshold, String filename) {
-
-		int cap = 0;
-		boolean isEntered = false;
-
+	private boolean executeSelection(char selection, int seats, double threshold, String filename) {
 		switch (selection) {
 			case '1':
 				currMethod = new DroopHA(seats, threshold, filename);
@@ -99,24 +101,13 @@ public class Controller {
 				currMethod = new DroopLR_Sq(seats, threshold, filename);
 				break;
 			case '0':
-				System.out.println("Please the cap. (The minimum is 0.) :");
-				while (isEntered == false) {
-					try {
-						cap = input.nextInt();
-						input.nextLine();
-					} catch (InputMismatchException e) {
-						System.err.println("Invalid input. Please enter an intger greater than 0.");
-					}
-					if (cap >= 0) {
-						isEntered = true;
-					}
-				}
-				currMethod = new SouthAfricanMethod(seats, threshold, filename, cap);
+				currMethod = new SouthAfricanMethod(seats, threshold, filename, entercap());
 				break;
 			default:
 				System.out.println("Invaid Selection!");
-				break;
+				return false;
 		}
+		return true;
 
 	}
 
@@ -127,12 +118,10 @@ public class Controller {
 	 * @param int              seats
 	 * @param double           threshold
 	 * @param ArrayList<Party> parties
+	 * 
+	 * @return boolean
 	 */
-	private void executeSelection(char selection, int seats, double threshold, ArrayList<Party> parties) {
-
-		int cap = 0;
-		boolean isEntered = false;
-
+	private boolean executeSelection(char selection, int seats, double threshold, ArrayList<Party> parties) {
 		switch (selection) {
 			case '1':
 				currMethod = new DroopHA(seats, threshold, parties);
@@ -162,113 +151,92 @@ public class Controller {
 				currMethod = new DroopLR_Sq(seats, threshold, parties);
 				break;
 			case '0':
-				System.out.println("Please the cap. (The minimum is 0.) :");
-				while (isEntered == false) {
-					try {
-						cap = input.nextInt();
-						input.nextLine();
-					} catch (InputMismatchException e) {
-						System.err.println("Invalid input. Please enter an intger greater than 0.");
-					}
-					if (cap >= 0) {
-						isEntered = true;
-					}
-				}
-				currMethod = new SouthAfricanMethod(seats, threshold, cap, parties);
+				currMethod = new SouthAfricanMethod(seats, threshold, entercap(), parties);
 				break;
 			default:
 				System.out.println("Invaid Selection!");
-				break;
+				return false;
 		}
+		return true;
 
 	}
 
-	public void run() throws IOException {
-		String filename = "test-1a.txt";
-
-		char selection = ' ';
-		int seats = 0;
-		double threshold = 0.00;
-		boolean isManual = true;
-		boolean isEntered = false;
-
-		ArrayList<Party> Parties = new ArrayList<Party>();
-
-		System.out.println("Welcome to my Party List Proporitonal Representation Sim. \n");
-
-		while (isEntered == false) {
-			System.out.println(
-					"Do you want to enter the results manualy (M or m) or load them from a .txt file (F or f)?");
-
-			switch (getSelection()) {
-				case 'F':
-				case 'f':
-					isManual = false;
-				case 'M':
-				case 'm':
-					isEntered = true;
-					break;
-				default:
-					System.out.println("Invaid Selection!");
-					break;
+	private int entercap() {
+		int cap = 0;
+		System.out.println("Please the cap. (The minimum is 0.) :");
+		while (true) {
+			try {
+				cap = input.nextInt();
+				input.nextLine();
+			} catch (InputMismatchException e) {
+				System.err.println("Invalid input. Please enter an intger greater than 0.");
+			}
+			if (cap >= 0) {
+				break;
 			}
 		}
+		return cap;
+	}
 
-		isEntered = false;
-		while (isEntered == false) {
+	private int enterSeats() {
+		int seats = 0;
+		while (true) {
 			System.out.println("Please the number of seat up this election. (The minimum is 1.) :");
 			try {
 				seats = input.nextInt();
 				input.nextLine();
 			} catch (InputMismatchException e) {
 				System.err.println("Invalid input. Please enter an intger greater than 0.");
+				input.nextLine();
 			}
 			if (seats >= 1) {
-				isEntered = true;
-			}
-		}
-
-		isEntered = false;
-
-		if (isManual == true) {
-			Parties = enterResults();
-		} else {
-
-			while (isEntered == false) {
-				System.out.println("\nPlease enter the name of a .txt file (remmber to include the .txt at the end):");
-				filename = input.nextLine(); // Grabs the next word entered
-				input.nextLine();
-
-				// Check if the input ends with .txt (ignoring uppercase/lowercase differences)
-				if (filename.toLowerCase().endsWith(".txt")) {
-					isEntered = true;
-				} else {
-					System.err.println("Invalid format. The filename must end with '.txt'.");
-					System.out.println("Please try again (e.g., test.txt):");
-					input.nextLine();
-				}
-			}
-		}
-
-		displayMenu();
-		selection = getSelection();
-		while (selection != 'q') {
-			if (isManual == true) {
-				executeSelection(selection, seats, threshold, Parties);
+				break;
 			} else {
-				executeSelection(selection, seats, threshold, filename);
+				System.out.println(seats + " is less then 1. Try agian");
 			}
-			if (currMethod != null) {
-				if (isManual == false) {
-					currMethod.loadFile();
-					// catch (java.io.FileNotFoundException e)
-				}
-				currMethod.allocateSeats();
-				currMethod.results();
-			}
-			displayMenu();
-			selection = getSelection();
 		}
+		return seats;
+	}
+
+	private String enterFileName() {
+		String filename = "test-1a.txt";
+		while (true) {
+			System.out.println("\nPlease enter the name of a .txt file (remmber to include the .txt at the end):");
+			filename = input.nextLine(); // Grabs the next word entered
+			// Check if the input ends with .txt (ignoring uppercase/lowercase differences)
+			if (!filename.toLowerCase().endsWith(".txt")) {
+				System.err.println("Invalid format. The filename must end with '.txt'.");
+				System.out.println("Please press enter to try again (e.g., test.txt):");
+				input.nextLine();
+			} else if (!(new File(filename).canRead())) {
+				System.err.println("the file " + filename
+						+ " either does not exist or is not readable. Please enter a readable file.");
+				System.out.println("Please press enter to try again:");
+				input.nextLine();
+			} else {
+				break;
+			}
+		}
+		return filename;
+	}
+
+	private double enterThreshold() {
+		double threshold = 0.00;
+		while (true) {
+			System.out.println(
+					"Please enter the decimal number that coordiates with the percentage threshold a party must pass to revice seats. Ex: 0.01 for 1%, 0.5 for 50% etc. (The minimum is 0.0, maxium is 1.0):");
+			try {
+				threshold = input.nextDouble();
+				input.nextLine();
+			} catch (InputMismatchException e) {
+				System.err.println("Invalid input. Please enter an decimal bewteen 0.0 and 1.0.");
+				input.nextLine();
+			}
+			if ((threshold >= 0.0) && (threshold <= 1.0)) {
+				break;
+			}
+		}
+		return threshold;
 	}
 
 	public ArrayList<Party> enterResults() {
@@ -320,6 +288,113 @@ public class Controller {
 		}
 
 		return parties;
+	}
+
+	public void run() throws IOException {
+		String filename = "test-1a.txt";
+
+		char selection = ' ';
+		int seats = 0;
+		double threshold = 0.00;
+		boolean isManual = true;
+		boolean isEntered = false;
+		boolean isSucessful = false;
+
+		ArrayList<Party> Parties = new ArrayList<Party>();
+
+		System.out.println("Welcome to this Party List Proporitonal Representation Sim. \n");
+
+		seats = enterSeats();
+		while (isEntered == false) {
+			System.out.println(
+					"Do you want to enter the results manualy (M or m) or load them from a .txt file (F or f)?");
+
+			switch (getSelection()) {
+				case 'F':
+				case 'f':
+					filename = enterFileName();
+					isManual = false;
+					isEntered = true;
+
+					break;
+				case 'M':
+				case 'm':
+					Parties = enterResults();
+					isManual = true;
+					isEntered = true;
+					break;
+				default:
+					System.out.println("Invaid Selection!");
+					break;
+			}
+		}
+		threshold = enterThreshold();
+		isEntered = false;
+
+		displayMenu();
+		selection = getSelection();
+		while ((selection != 'q') && (selection != 'Q')) {
+			switch (selection) { // Yes, I am mad.
+				case 'R':
+				case 'r':
+					while (isEntered == false) {
+						System.out.println(
+								"Do you want to enter the results manualy (M or m) or load them from a .txt file (F or f)?");
+						switch (getSelection()) {
+							case 'F':
+							case 'f':
+								filename = enterFileName();
+								isManual = false;
+								isEntered = true;
+								break;
+							case 'M':
+							case 'm':
+								Parties = enterResults();
+								isManual = true;
+								isEntered = true;
+								break;
+							default:
+								System.out.println("Invaid Selection!");
+								break;
+						}
+					}
+					isEntered = false;
+					break;
+				case 'S':
+				case 's':
+					seats = enterSeats();
+					break;
+				case 'T':
+				case 't':
+					threshold = enterThreshold();
+					break;
+				default:
+					if (isManual == true) {
+						isSucessful = executeSelection(selection, seats, threshold, Parties);
+					} else {
+						isSucessful = executeSelection(selection, seats, threshold, filename);
+					}
+					if (currMethod != null) {
+						if (isManual == false) {
+							try {
+								currMethod.loadFile();
+							} catch (java.io.FileNotFoundException e) {
+								System.out.println("Something when wrong here?!?!??!?!?");
+								isSucessful = false;
+							}
+						}
+						if (isSucessful) {
+							currMethod.allocateSeats();
+							currMethod.results();
+						}
+					}
+					System.out.println("\nPlease press any key to return to the menu:");
+					input.nextLine();
+					break;
+			}
+			displayMenu();
+			selection = getSelection();
+		}
 	}
 
 }

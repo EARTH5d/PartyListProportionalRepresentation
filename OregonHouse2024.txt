@@ -1,0 +1,7 @@
+Democratic:1091491
+Republican:850882
+Unaffiliated:9159
+Pacific Green:4781
+Libertarian:3687
+Independent Party or Oregon:1252
+Write-in Candidates:16501
