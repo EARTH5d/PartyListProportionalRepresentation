@@ -10,7 +10,6 @@ import java.util.Scanner;
  * @version 7/7/2026
  */
 public class Controller {
-	// instance variables - replace the example below with your own
 	private Scanner input;
 	private Method currMethod;
 

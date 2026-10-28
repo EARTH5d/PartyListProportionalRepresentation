@@ -265,7 +265,10 @@ public abstract class Method {
 	public void results() {
 		Party curr = new Party();
 		System.out.println("The election results are: ");
-		System.out.println("There were " + seats + " seats up in this election.");
+		// Sort to order the list so that the party with the most seat is on top and the
+		// part with the less is at the bottom.
+		parties.sort(Comparator.comparingInt(Party::getSeats).thenComparingInt(Party::getVotes)
+				.thenComparing(Party::getName).reversed());
 		for (ListIterator<Party> it = parties.listIterator(); it.hasNext();) {
 			curr = it.next();
 			curr.display();
