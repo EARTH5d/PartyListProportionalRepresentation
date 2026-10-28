@@ -242,6 +242,7 @@ public class Controller {
 		int number = 0; // The number of Parties.
 		int votes = -1; // The number of votes a party got.
 		String name = "N/A"; // The name of a party;
+		String temp = "N/A"; // The name of a party;
 		boolean isEntered = false;
 
 		ArrayList<Party> parties = new ArrayList<Party>();
@@ -273,10 +274,10 @@ public class Controller {
 				System.out.println("And how many votes did " + name + " revice in this election?(At least 0): ");
 				try {
 					votes = input.nextInt();
-					name = input.nextLine();
+					input.nextLine();
 				} catch (InputMismatchException e) {
 					System.err.println("Invalid input. Please enter an intger greater than or equal to 0.");
-					name = input.nextLine();
+					input.nextLine();
 				}
 				if (number >= 0) {
 					isEntered = true;

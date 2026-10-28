@@ -267,8 +267,8 @@ public abstract class Method {
 		System.out.println("The election results are: ");
 		// Sort to order the list so that the party with the most seat is on top and the
 		// part with the less is at the bottom.
-		parties.sort(Comparator.comparingInt(Party::getSeats).thenComparingInt(Party::getVotes)
-				.thenComparing(Party::getName).reversed());
+		parties.sort(Comparator.comparingInt(Party::getSeats).reversed()
+				.thenComparing(Party::getVotes, Comparator.reverseOrder()).thenComparing(Party::getName));
 		for (ListIterator<Party> it = parties.listIterator(); it.hasNext();) {
 			curr = it.next();
 			curr.display();
